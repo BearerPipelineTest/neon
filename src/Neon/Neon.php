@@ -37,9 +37,10 @@ final class Neon
 	 * Converts given NEON to PHP value.
 	 * @return mixed
 	 */
-	public static function decode(string $input)
+	public static function decode(string $input, bool $associativeAsObjects = false)
 	{
 		$decoder = new Decoder;
+		$decoder->associativeAsObjects = $associativeAsObjects;
 		return $decoder->decode($input);
 	}
 
@@ -48,7 +49,7 @@ final class Neon
 	 * Converts given NEON file to PHP value.
 	 * @return mixed
 	 */
-	public static function decodeFile(string $file)
+	public static function decodeFile(string $file, bool $associativeAsObjects = false)
 	{
 		if (!is_file($file)) {
 			throw new Exception("File '$file' does not exist.");
@@ -59,6 +60,6 @@ final class Neon
 			$input = substr($input, 3);
 		}
 
-		return self::decode($input);
+		return self::decode($input, $associativeAsObjects);
 	}
 }
