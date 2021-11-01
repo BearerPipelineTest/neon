@@ -30,11 +30,11 @@ final class EntityNode extends Node
 	}
 
 
-	public function toValue(): Entity
+	public function toValue(callable $evaluator = null): Entity
 	{
 		return new Entity(
-			$this->value->toValue(),
-			ArrayItemNode::itemsToArray($this->attributes)
+			$evaluator ? $evaluator($this->value) : $this->value->toValue(),
+			ArrayItemNode::itemsToArray($this->attributes, $evaluator)
 		);
 	}
 

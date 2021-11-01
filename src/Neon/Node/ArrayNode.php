@@ -20,9 +20,9 @@ abstract class ArrayNode extends Node
 
 
 	/** @return mixed[] */
-	public function toValue(): array
+	public function toValue(callable $evaluator = null): array
 	{
-		return ArrayItemNode::itemsToArray($this->items);
+		return ArrayItemNode::itemsToArray($this->items, $evaluator);
 	}
 
 
