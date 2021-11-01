@@ -35,7 +35,8 @@ abstract class Node implements \IteratorAggregate
 	abstract public function toValue(callable $evaluator = null);
 
 
-	abstract public function toString(): string;
+	/** @param  callable(self): string|null  $serializer */
+	abstract public function toString(callable $serializer = null): string;
 
 
 	public function &getIterator(): \Generator

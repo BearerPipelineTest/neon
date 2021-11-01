@@ -77,7 +77,7 @@ final class StringNode extends Node
 	}
 
 
-	public function toString(): string
+	public function toString(callable $serializer = null): string
 	{
 		if (strpos($this->value, "\n") === false) {
 			return "'" . str_replace("'", "''", $this->value) . "'";
